@@ -58,7 +58,21 @@ export default function Login() {
                             </label>
                             <a href="#" className="text-sm text-blue-400">¿Olvidó la contraseña?</a>
                         </div>
-                        
+                        <button
+                            type="submit"
+                            className="mt-8 w-full h-12 bg-blue-800 text-white rounded-md bg-gradient-to-r
+                            from-blue-800 via-blue-600 to-blue-400 hover:from-blue-900 hover:to-blue-500 focus:outline-none
+                            focus:ring-2 focus:ring-blue-300 shadow-md"
+                        >
+                            Acceso
+                        </button>
+                        <p className="text-center text-sm text-gray-600 mt-4">
+                            ¿No tienes una cuenta? <a href="#" className="text-blue-400">Registrate</a>
+                        </p>
+                        <div className="flex justify-center gap-6 mt-6 text xs text-gray-500">
+                            <a href="#" className="hover:underline">CENTRO DE AYUDA</a>
+                            <a href="#" className="hover:underline">POLITICAS</a>
+                        </div>
 
                     </form>
                 </div>
