@@ -1,7 +1,8 @@
+import React from 'react';
 
 const Header = () => {
 return (
-    <header className="relative flex justify-between items-center py-10 px-10 lg:px20">
+    <header className="relative flex justify-between items-center py-10 px-10 lg:px-20">
 
     <div 
     style={{
@@ -14,9 +15,9 @@ return (
     }}
     >
         <div>
-            <img 
-        src="/sinfondo.png" 
-        alt="logo" 
+            <img
+        src="/sinfondo.png"
+        alt="logo"
         style={{ width: "60px" }}
     />
         </div>
@@ -41,4 +42,3 @@ return (
 }
 
 export default Header
-
