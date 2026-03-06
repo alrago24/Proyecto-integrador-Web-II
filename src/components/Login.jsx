@@ -15,6 +15,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
+            
 
            {/* Derecha: tarjeta de login*/}
             <div className="flex flex-1 item-center justify-center">
