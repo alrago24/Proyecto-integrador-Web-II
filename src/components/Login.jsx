@@ -16,6 +16,68 @@ export default function Login() {
                 </div>
             </div>
             
+
+           {/* Derecha: tarjeta de login*/}
+            <div className="flex flex-1 item-center justify-center">
+                <div className="w-full max-w-sm p-4">
+                    <div className="flex flex-col items-center gap-4">
+                        <img src={logo} alt="logo" className="h-[200px] w-auto mb-6 mt-6" />
+                        <h1 className="text-4xl font-semibold">EduPerformance</h1>
+                        <p className="text-lg text-gray-500 mt-2 mb-6">¡Bienvenido de nuevo! Introduce tus datos.</p>
+                    </div>
+
+                    <form className="mt-6">
+                        <label className="block text-sm font-medium text-gray-700">Correo institucional</label>
+                        <input
+                            name="email"
+                            placeholder="ej. satehortuaal@cesde.net"
+                            className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+                        />
+
+                        <label className="block text-sm font-medium text-gray-700 mt-4">Contraseña</label>
+                        <div className="relative mt-1">
+                            <input
+                                name="password"
+                                type="password"
+                                placeholder="Ingrese su contraseña"
+                                className="w-full px-4 py-2 border rounded-md pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+
+                            <button
+                                type="button"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600"
+                                aria-label="toggle password visibility"
+                            >
+                                👁
+                            </button>
+                        </div>
+
+                        <div className="flex items-center justify-between mt-8">
+                            <label className="flex items-center text-sm">
+                                <input name="remember" type="checkbox" className="mr-2 " />
+                                Recuerdame
+                            </label>
+                            <a href="#" className="text-sm text-blue-400">¿Olvidó la contraseña?</a>
+                        </div>
+                        <button
+                            type="submit"
+                            className="mt-8 w-full h-12 bg-blue-800 text-white rounded-md bg-gradient-to-r
+                            from-blue-800 via-blue-600 to-blue-400 hover:from-blue-900 hover:to-blue-500 focus:outline-none
+                            focus:ring-2 focus:ring-blue-300 shadow-md"
+                        >
+                            Acceso
+                        </button>
+                        <p className="text-center text-sm text-gray-600 mt-4">
+                            ¿No tienes una cuenta? <a href="#" className="text-blue-400">Registrate</a>
+                        </p>
+                        <div className="flex justify-center gap-6 mt-6 text xs text-gray-500">
+                            <a href="#" className="hover:underline">CENTRO DE AYUDA</a>
+                            <a href="#" className="hover:underline">POLITICAS</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
 
     )
