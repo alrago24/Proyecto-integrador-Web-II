@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  body {
+    @apply text-white
+    relative font-sans h-screen
+    overflow-hidden
+  }
