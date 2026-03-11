@@ -38,7 +38,7 @@ return (
         <a className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" href="">Nosotros</a>
     </nav>
 
-    <button 
+    <button
     className="hidden md:block bg-[#a7a7a7] text-black py-3 px-8 rounded-full border-none font-medium transition-all duration-500 hover:bg-white cursor-pointer z-50 absolute right-4 top-1/2 -translate-y-1/2"
 >
     Registrate
