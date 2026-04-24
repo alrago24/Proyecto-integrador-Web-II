@@ -1,16 +1,6 @@
 /**
- * @file LoginPage.jsx
- * @description Vista de inicio de sesión de EduPerformance.
- *
- * Esta vista presenta un diseño dividido (split-screen):
- *  - Izquierda: Imagen de fondo decorativa con mensaje inspirador (oculta en móviles).
- *  - Derecha: Formulario interactivo de inicio de sesión.
- *
- * Características principales:
- *  - Selector dinámico de roles (Docente / Estudiante) con animación deslizante.
- *  - Manejo del estado del formulario (email, password, remember).
- *  - Visibilidad de contraseña alternable (👁/🙈).
- *  - Redirección condicional: envía a /docente o /estudiante según el rol seleccionado.
+ * Vista de inicio de sesión.
+ * Incluye formulario interactivo, selector de roles y redirección.
  */
 
 import React, { useState } from "react";
@@ -22,14 +12,13 @@ import Button from "../components/Button";
 export default function LoginPage() {
     const navigate = useNavigate(); // Hook de React Router para redirecciones programáticas
 
-    // ── Estados locales ──
-    const [role, setRole]                 = useState("docente"); // Rol activo seleccionado
-    const [showPassword, setShowPassword] = useState(false);     // Controla si se ve la contraseña
-    const [formData, setFormData]         = useState({ email: "", password: "", remember: false }); // Datos del formulario
+    // Estados locales
+    const [role, setRole]                 = useState("docente");
+    const [showPassword, setShowPassword] = useState(false);
+    const [formData, setFormData]         = useState({ email: "", password: "", remember: false });
 
     /**
-     * Maneja los cambios en los inputs del formulario.
-     * Soporta tanto inputs de texto/email como checkboxes.
+     * Maneja cambios en inputs y checkboxes.
      */
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -37,9 +26,7 @@ export default function LoginPage() {
     };
 
     /**
-     * Simula el proceso de inicio de sesión.
-     * En un entorno real, aquí se llamaría a una API de autenticación.
-     * Actualmente redirige al panel correspondiente según el rol.
+     * Simula el inicio de sesión y redirige según el rol.
      */
     const handleSubmit = (e) => {
         e.preventDefault(); // Evita la recarga de la página
@@ -50,7 +37,7 @@ export default function LoginPage() {
 
     return (
         <div className="min-h-screen flex">
-            {/* ── Panel Izquierdo: Imagen decorativa (Oculto en pantallas pequeñas md) ── */}
+            {/* Panel Izquierdo: Imagen decorativa */}
             <div
                 className="hidden md:flex w-1/2 bg-cover bg-center relative"
                 style={{ backgroundImage: `url(${Foto})` }}
@@ -68,7 +55,7 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            {/* ── Panel Derecho: Formulario de Login ── */}
+            {/* Panel Derecho: Formulario */}
             <div className="flex flex-1 items-center justify-center bg-white px-6">
                 <div className="w-full max-w-sm">
                     {/* Encabezado: Logo + Título */}
@@ -80,7 +67,7 @@ export default function LoginPage() {
 
                     {/* Selector interactivo de Rol (Toggle Switch) */}
                     <div className="relative flex bg-slate-100 rounded-xl p-1 gap-1 mb-6">
-                        {/* Indicador deslizante de fondo con animación */}
+                        {/* Indicador deslizante */}
                         <div
                             className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-lg shadow-md
                                 transition-all duration-300 ease-in-out
@@ -166,7 +153,7 @@ export default function LoginPage() {
                             <a href="#" className="text-blue-500 hover:underline">¿Olvidó la contraseña?</a>
                         </div>
 
-                        {/* Botón CTA reutilizable. Usa variante primaria para docente y verde para estudiante */}
+                        {/* Botón CTA */}
                         <Button
                             type="submit"
                             fullWidth

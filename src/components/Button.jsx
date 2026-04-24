@@ -1,32 +1,19 @@
 /**
- * @file Button.jsx
- * @description Componente de botón reutilizable con variantes de estilo y tamaño.
- *
- * Diseñado para usarse en cualquier parte de la aplicación en lugar de
- * crear botones ad-hoc con clases Tailwind repetidas. Centraliza el diseño
- * y facilita cambios globales de estilo desde un solo lugar.
- *
- * Props:
- * @param {React.ReactNode} children  - Texto o contenido dentro del botón.
- * @param {'primary'|'success'|'danger'|'warning'|'secondary'|'ghost'|'dark'} [variant='primary']
- *   - Paleta de colores del botón.
- * @param {'sm'|'md'|'lg'} [size='md'] - Tamaño del botón (padding + texto).
- * @param {boolean} [fullWidth=false]  - Si true, ocupa todo el ancho disponible.
- * @param {boolean} [disabled=false]   - Desactiva el botón (opacidad + cursor bloqueado).
- * @param {React.ReactNode} [icon]     - Icono opcional que se renderiza antes del texto.
- * @param {'button'|'submit'|'reset'} [type='button'] - Tipo HTML del botón.
- * @param {Function} [onClick]         - Manejador del evento click.
- * @param {string} [className='']      - Clases Tailwind adicionales para extensibilidad.
- *
- * Ejemplos de uso:
- *   <Button variant="primary" size="lg" icon="🚀" onClick={handleClick}>Enviar</Button>
- *   <Button type="submit" fullWidth variant="success">Guardar</Button>
- *   <Button variant="danger" size="sm" onClick={() => handleDelete(id)}>Eliminar</Button>
+ * Componente Button reutilizable.
+ * @param {React.ReactNode} children - Contenido del botón.
+ * @param {'primary'|'success'|'danger'|'warning'|'secondary'|'ghost'|'dark'} [variant='primary'] - Paleta de colores.
+ * @param {'sm'|'md'|'lg'} [size='md'] - Tamaño del botón.
+ * @param {boolean} [fullWidth=false] - Ocupar todo el ancho.
+ * @param {boolean} [disabled=false] - Estado deshabilitado.
+ * @param {React.ReactNode} [icon] - Icono opcional.
+ * @param {'button'|'submit'|'reset'} [type='button'] - Tipo de botón HTML.
+ * @param {Function} [onClick] - Evento click.
+ * @param {string} [className=''] - Clases extra.
  */
 
 import React from 'react';
 
-// ── Mapa de variantes: cada clave define el gradiente, color de texto y sombra ──
+// Mapa de variantes (gradientes, colores y sombras)
 const VARIANTS = {
     primary: 'bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 hover:from-blue-900 hover:to-blue-500 text-white shadow-md shadow-blue-200 focus:ring-blue-300',
     success: 'bg-gradient-to-r from-emerald-700 via-emerald-500 to-teal-400 hover:from-emerald-800 hover:to-teal-500 text-white shadow-md shadow-emerald-200 focus:ring-emerald-300',
@@ -37,7 +24,7 @@ const VARIANTS = {
     dark: 'bg-zinc-900 text-white hover:bg-zinc-800 shadow-md focus:ring-zinc-300',
 };
 
-// ── Mapa de tamaños: controla el padding y el tamaño de fuente ──
+// Mapa de tamaños (padding y fuente)
 const SIZES = {
     sm: 'px-3 py-1.5 text-xs rounded-lg',
     md: 'px-5 py-2.5 text-sm rounded-xl',
@@ -50,7 +37,7 @@ export default function Button({
     size = 'md',
     fullWidth = false,
     disabled = false,
-    icon,                   // Icono opcional (emoji o componente SVG)
+    icon,
     type = 'button',
     onClick,
     className = '',
@@ -64,13 +51,12 @@ export default function Button({
         inline-flex items-center justify-center gap-2 font-semibold
         transition-all duration-200 focus:outline-none focus:ring-2
         disabled:opacity-50 disabled:cursor-not-allowed
-        ${VARIANTS[variant] ?? VARIANTS.primary}   /* Variante de color, fallback a primary */
-        ${SIZES[size] ?? SIZES.md}            /* Tamaño del botón, fallback a md */
-        ${fullWidth ? 'w-full' : ''}               /* Ancho completo si se especifica */
-        ${className}                               /* Clases adicionales del consumidor */
+        ${VARIANTS[variant] ?? VARIANTS.primary}
+        ${SIZES[size] ?? SIZES.md}
+        ${fullWidth ? 'w-full' : ''}
+        ${className}
       `}
         >
-            {/* Icono opcional — se muestra solo si se pasa la prop icon */}
             {icon && <span className="text-base leading-none">{icon}</span>}
             {children}
         </button>
