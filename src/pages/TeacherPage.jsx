@@ -124,7 +124,7 @@ export default function TeacherPage() {
 
                 {/* ── ENCABEZADO SUPERIOR (TOPBAR) ── */}
                 <header className="bg-white/80 backdrop-blur-md shadow-sm h-20 flex justify-between
-                                   items-center z-10 border-b border-slate-200 px-8">
+                                items-center z-10 border-b border-slate-200 px-8">
                     <div className="flex items-center gap-4">
                         {/* Botón Hamburguesa para el Sidebar */}
                         <button onClick={() => setIsSidebarOpen(p => !p)}
@@ -228,7 +228,7 @@ export default function TeacherPage() {
                                 </Card>
                             </div>
 
-                            {/* ── SECCIÓN DE CALENDARIO Y EVENTOS — Ocupa 1/3 columnas ── */}
+                            {/* ── SECCIÓN DE CALENDARIO Y EVENTOS — Ocupa 1/3 columnas ── */
                             <div className="xl:col-span-1">
                                 <Card noPadding className="sticky top-8">
                                     <div className="bg-zinc-950 px-6 py-5 flex items-center justify-between text-white">
