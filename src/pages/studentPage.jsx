@@ -1,12 +1,6 @@
 /**
- * @file StudentPage.jsx
- * @description Panel principal para usuarios con rol de Estudiante.
- *
- * Características:
- *  - Sistema de pestañas (Tabs): Alterna entre el Dashboard general y el Reporte de Notas.
- *  - Componentes gráficos enriquecidos: Tarjetas de progreso, barras de estadística, insignias y calendario.
- *  - Lista interactiva de tareas: permite marcar ítems como realizados y esto recalcula los pendientes.
- *  - Cálculos dinámicos de rendimiento general.
+ * Panel principal para usuarios con rol de Estudiante.
+ * Contiene Dashboard con métricas, tareas y vista de notas.
  */
 
 import React, { useState } from 'react';
@@ -17,7 +11,7 @@ import Badge       from '../components/Badge';
 import ProgressBar from '../components/ProgressBar';
 import Button      from '../components/Button';
 
-// ── Mock Data (Datos de simulación) ──
+// Datos de simulación (Mock Data)
 const COURSES = [
     { id: 1, name: 'Matemáticas Avanzadas', teacher: 'Prof. García',    color: 'from-violet-500 to-purple-600', progress: 72, grade: 4.2 },
     { id: 2, name: 'Programación Web',      teacher: 'Prof. Martínez',  color: 'from-cyan-500 to-blue-600',     progress: 88, grade: 4.8 },
@@ -41,7 +35,7 @@ const INITIAL_TASKS = [
 
 const MONTH_NAMES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
-// Función de utilidad para colorear el texto basado en la nota académica
+// Utilidad para color de nota
 const gradeColor = (g) => {
     if (g >= 4.5) return 'text-emerald-600 font-bold'; // Excelente
     if (g >= 3.5) return 'text-amber-500 font-bold';   // Regular/Aceptable
@@ -49,7 +43,7 @@ const gradeColor = (g) => {
 };
 
 export default function StudentPage() {
-    // ── Estados Locales ──
+    // Estados Locales
     const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Controla la barra lateral colapsable
     const [tasks, setTasks]                 = useState(INITIAL_TASKS); // Maneja la lista interactiva de tareas
     const [activeTab, setActiveTab]         = useState('dashboard'); // Controla la pestaña visible actual ('dashboard' o 'grades')
@@ -57,17 +51,17 @@ export default function StudentPage() {
     // Alternar el estado de completado de una tarea
     const toggleTask = (id) => setTasks(prev => prev.map(t => t.id === id ? { ...t, done: !t.done } : t));
 
-    // ── Cálculos Dinámicos ──
+    // Cálculos Dinámicos
     const avgGrade    = (GRADES.reduce((s, g) => s + g.final, 0) / GRADES.length).toFixed(1); // Promedio total (nota)
     const avgProgress = Math.round(COURSES.reduce((s, c) => s + c.progress, 0) / COURSES.length); // Avance general (%)
     const pending     = tasks.filter(t => !t.done).length; // Tareas aún pendientes
 
-    // Cálculos de calendario (ídem a la TeacherPage, usado en un mini widget de calendario)
+    // Calendario
     const today           = new Date();
     const daysInMonth     = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
     const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
 
-    // Estructura de navegación para renderizado dinámico del menú
+    // Navegación
     const NAV_ITEMS = [
         { key: 'dashboard', label: 'Dashboard', icon: '📊' },
         { key: 'grades',    label: 'Mis Notas',  icon: '📝' },
@@ -76,7 +70,7 @@ export default function StudentPage() {
     return (
         <div className="flex h-screen bg-slate-50 font-sans text-slate-800 overflow-hidden">
 
-            {/* ── BARRA LATERAL (SIDEBAR) ── */}
+            {/* Barra Lateral (Sidebar) */}
             <aside className={`bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-300
                 flex flex-col shadow-2xl z-20 transition-all duration-300
                 ${isSidebarOpen ? 'w-64' : 'w-20'}`}>
@@ -143,13 +137,13 @@ export default function StudentPage() {
                 </div>
             </aside>
 
-            {/* ── CONTENIDO PRINCIPAL ── */}
+            {/* Contenido Principal */}
             <div className="flex-1 flex flex-col overflow-hidden relative">
                 {/* Elementos decorativos (orbes desenfocados) */}
                 <div className="absolute top-[-5%] right-[-5%] w-[35rem] h-[20rem] bg-emerald-400 opacity-10 blur-[100px] rounded-full pointer-events-none" />
                 <div className="absolute bottom-[-5%] left-[-5%] w-[25rem] h-[15rem] bg-cyan-400 opacity-10 blur-[100px] rounded-full pointer-events-none" />
 
-                {/* ── ENCABEZADO (TOPBAR) ── */}
+                {/* Encabezado (Topbar) */}
                 <header className="bg-white/80 backdrop-blur-md shadow-sm h-20 flex justify-between items-center z-10 border-b border-slate-200 px-8">
                     <div className="flex items-center gap-4">
                         <button onClick={() => setIsSidebarOpen(p => !p)}
@@ -176,11 +170,11 @@ export default function StudentPage() {
                     </div>
                 </header>
 
-                {/* ── ÁREA DE TRABAJO (RENDER CONDICIONAL) ── */}
+                {/* Área de Trabajo */}
                 <main className="flex-1 overflow-y-auto p-8 z-10">
                     <div className="max-w-7xl mx-auto">
 
-                        {/* ══ VISTA 1: DASHBOARD (Resumen y métricas) ══ */}
+                        {/* Vista 1: Dashboard */}
                         {activeTab === 'dashboard' && (
                             <div className="space-y-8">
                                 {/* Componentes de métricas clave */}
@@ -282,7 +276,7 @@ export default function StudentPage() {
                             </div>
                         )}
 
-                        {/* ══ VISTA 2: NOTAS Y CALIFICACIONES DETALLADAS ══ */}
+                        {/* Vista 2: Notas */}
                         {activeTab === 'grades' && (
                             <div className="space-y-6">
                                 {/* Tabla Informativa */}

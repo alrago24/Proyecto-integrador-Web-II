@@ -1,12 +1,6 @@
 /**
- * @file TeacherPage.jsx
- * @description Panel principal para usuarios con rol de Docente.
- *
- * Características:
- *  - Barra lateral (Sidebar) retráctil (colapsable) con enlaces.
- *  - Sistema CRUD básico en memoria para gestionar cursos (Crear, Leer, Actualizar, Eliminar).
- *  - Mini calendario interactivo calculado dinámicamente con eventos fijados.
- *  - Diseño responsive y uso de componentes modulares (Card, Button, Badge).
+ * Panel principal para usuarios con rol de Docente.
+ * Incluye gestión de cursos (CRUD) y calendario de eventos.
  */
 
 import React, { useState } from 'react';
@@ -15,7 +9,7 @@ import Button from '../components/Button';
 import Card   from '../components/Card';
 import Badge  from '../components/Badge';
 
-// ── Datos Iniciales (Mocks) ──
+// Datos Iniciales (Mocks)
 const INITIAL_COURSES = [
     { id: 1, name: 'Matemáticas Avanzadas', description: 'Curso de cálculo diferencial para ingenierías.' },
     { id: 2, name: 'Programación Web',      description: 'Desarrollo de SPA con React y Tailwind.' },
@@ -24,20 +18,20 @@ const INITIAL_COURSES = [
 const MONTH_NAMES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
 export default function TeacherPage() {
-    // ── Estados de la Vista ──
+    // Estados de la Vista
     const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Controla el sidebar colapsable
     
-    // ── Estados del CRUD de Cursos ──
+    // Estados del CRUD
     const [items, setItems]                  = useState(INITIAL_COURSES); // Lista de cursos
     const [formData, setFormData]            = useState({ name: '', description: '' }); // Formulario actual
     const [editingId, setEditingId]          = useState(null); // ID del curso en edición (null = crear modo)
 
-    // ── Cálculos del Calendario ──
+    // Cálculos del Calendario
     const today           = new Date();
     const daysInMonth     = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate(); // Días del mes actual
     const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1).getDay(); // Día de la semana en que inicia el mes
 
-    // ── Funciones manejadoras del CRUD ──
+    // Funciones manejadoras del CRUD
 
     // Actualiza el estado del formulario mientras se escribe
     const handleInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -68,7 +62,7 @@ export default function TeacherPage() {
     return (
         <div className="flex h-screen bg-slate-50 font-sans text-slate-800">
 
-            {/* ── BARRA LATERAL (SIDEBAR) ── */}
+            {/* Barra Lateral (Sidebar) */}
             <aside className={`bg-zinc-950 text-slate-300 flex flex-col shadow-2xl z-20
                 transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-20'}`}>
 
@@ -116,13 +110,13 @@ export default function TeacherPage() {
                 </div>
             </aside>
 
-            {/* ── CONTENIDO PRINCIPAL ── */}
+            {/* Contenido Principal */}
             <div className="flex-1 flex flex-col overflow-hidden relative bg-[#f8fafc]">
                 {/* Elemento decorativo de fondo: mancha difuminada */}
                 <div className="absolute top-[-10%] right-[-5%] w-[40rem] h-[20rem] bg-[#e99b63]
                                 opacity-10 blur-[100px] rounded-full pointer-events-none -z-0" />
 
-                {/* ── ENCABEZADO SUPERIOR (TOPBAR) ── */}
+                {/* Encabezado Superior */}
                 <header className="bg-white/80 backdrop-blur-md shadow-sm h-20 flex justify-between
                                 items-center z-10 border-b border-slate-200 px-8">
                     <div className="flex items-center gap-4">
@@ -146,12 +140,12 @@ export default function TeacherPage() {
                     </div>
                 </header>
 
-                {/* ── ÁREA DE TRABAJO (MAIN) ── */}
+                {/* Área de Trabajo (Main) */}
                 <main className="flex-1 overflow-x-hidden overflow-y-auto p-8 z-10">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
-                            {/* ── SECCIÓN DE GESTIÓN (CRUD) — Ocupa 2/3 columnas ── */}
+                            {/* Sección de Gestión (CRUD) */}
                             <div className="xl:col-span-2 space-y-8">
 
                                 {/* 1. Formulario de Creación/Edición */}
@@ -228,7 +222,7 @@ export default function TeacherPage() {
                                 </Card>
                             </div>
 
-                            {/* ── SECCIÓN DE CALENDARIO Y EVENTOS — Ocupa 1/3 columnas ── */
+                            {/* Sección de Calendario y Eventos */}
                             <div className="xl:col-span-1">
                                 <Card noPadding className="sticky top-8">
                                     <div className="bg-zinc-950 px-6 py-5 flex items-center justify-between text-white">
