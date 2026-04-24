@@ -28,4 +28,25 @@
  *   />
  */
 
+import React from 'react';
 
+export default function StatCard({ label, value, icon, gradient = 'from-blue-500 to-blue-700', shadow = '' }) {
+    return (
+        /* Tarjeta con gradiente + hover de escala sutil para dar sensación de interactividad */
+        <div className={`bg-gradient-to-br ${gradient} text-white rounded-2xl p-6
+            shadow-lg ${shadow} hover:scale-[1.02] transition-transform duration-200`}>
+
+            {/* Layout en fila: texto a la izquierda, icono a la derecha */}
+            <div className="flex justify-between items-start">
+                <div>
+                    {/* Etiqueta descriptiva con opacidad reducida para jerarquía visual */}
+                    <p className="text-sm font-medium text-white/80">{label}</p>
+                    {/* Valor principal: muy grande y en negrita para máximo impacto visual */}
+                    <p className="text-4xl font-black mt-1">{value}</p>
+                </div>
+                {/* Icono decorativo con opacidad moderada */}
+                <span className="text-3xl opacity-80">{icon}</span>
+            </div>
+        </div>
+    );
+}
